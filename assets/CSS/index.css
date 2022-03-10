@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: rgb(58 58 58);
 }
 
 main {
@@ -8,7 +8,7 @@ main {
   margin-bottom: 40px;
   border-radius: 5px;
   background-color: rgb(58 58 58);
-  
+  background: rgb(246, 92, 20);
 }
 
 /* 940px is the standard width for wrappers, and margin:20px auto; centers the wrapper, 
@@ -76,12 +76,12 @@ a {
 }
 
 .aws-server, .putty, .apache2 {
-  background-color: rgb(58 58 58);
+  background: rgb(246, 92, 20);
   padding-left: 30px;
 }
 
 p, h2, li, ul, b {
-  background-color: rgb(58 58 58);
+  background: rgb(246, 92, 20);
 }
 
 /* style specifically for two instances of the hover prompt because they're positioned over text,
