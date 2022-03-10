@@ -1,0 +1,139 @@
+body {
+  background-color: white;
+}
+
+main {
+  float: right;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  background-color: rgb(58 58 58);
+  
+}
+
+/* 940px is the standard width for wrappers, and margin:20px auto; centers the wrapper, 
+if any containers are not inside the div id:wrapper, then they will not be affected by the limited
+940px width */
+div#wrapper {
+  width: 1000px;
+  margin: 40px auto;
+}
+  
+/* style for text including the hover prompt over large images */
+h1 {
+  display: none;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: azure;
+  font-weight: 300;
+  font-size: 2em;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  color: azure;
+}
+
+li {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  color: azure;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: darkturquoise;
+}
+
+#welcome {
+  font-size: 50px;
+  font-weight: 300;
+  padding: 20px;
+}
+
+#congrats {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+#congrats-invisible {
+  display: none;
+}
+
+.hover-prompt {
+  font-size: 10px;
+  font-weight: 100;
+  opacity: 0.5;
+  position: absolute;
+  top: 4px;
+  left: 16px;
+}
+
+.aws-server, .putty, .apache2 {
+  background-color: rgb(58 58 58);
+  padding-left: 30px;
+}
+
+p, h2, li, ul, b {
+  background-color: rgb(58 58 58);
+}
+
+/* style specifically for two instances of the hover prompt because they're positioned over text,
+ making them hard to read at 50% opacity. */
+.over-text {
+  opacity: 0.8;
+}
+
+.large-image {
+  width: 400px;
+}
+
+.image-container {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* style for the various sizes of images. Most fall into small, large, or wide category except
+for two images-- image 2 (ubuntu-image) because it's short while relatively wide
+and image 7 (inbound-image) because it's wide but taller than all the other wide images */
+.large-image:hover {
+  transform: scale(1.5);
+  position: relative;
+  left: 100px;
+}
+
+img:hover ~ .hover-prompt {
+  display: none;
+}
+
+.wide-image {
+  width: 500px;
+}
+
+.small-image {
+  width: 250px;
+}
+
+#ubuntu-image:hover {
+  transform: scale(1.5);
+  position: relative;
+  left: 125px;
+}
+
+#inbound-image {
+  width: 600px;
+}
+
+#inbound-image:hover {
+  transform: scale(1.5);
+  position: relative;
+  left: 150px;
+}

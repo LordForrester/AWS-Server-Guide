@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webserver Guide using AWS</title>
+  <link type="text/css" href="./assets/CSS/index.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;600&display=swap" rel="stylesheet">
+</head>
+
+<body onload="write()">
+  <script type="text/javascript" src="./assets/scripts/congrats.js"></script>
+
+  <header>
+
+  </header>
+  <div id="wrapper">
+  <main>
+    <h1>Guide to installing AWS server</h1><!--  invisible heading added for accessibility reasons -->
+    <p id="welcome">Welcome to the guide! We will be walking you through the process of installing an AWS server.</p>
+
+    <!-- /////////////Section 1. AWS server///////////// -->
+    <div class="aws-server">
+      <h2>Fire up your AWS server</h2>
+      <p>Begin by logging into your AWS account.</p>
+
+      <p>From the AWS Management Console, navigate to <b>Launch a virtual machine with EC2</b>.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/management_console.jpg" alt="instructions-image-1" class="large-image">
+        <p class="hover-prompt">Hover to expand</p>
+      </div>
+
+      <p>Scroll down to to <b>Ubuntu Server 20.04</b> and click <b>Select</b></p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/server_selection.jpg" alt="instructions-image-2" class="wide-image" id="ubuntu-image">
+        <p class="hover-prompt">Hover to expand</p>
+      </div>
+
+      <p>Select t2 (free tier in our case)</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/tier_selection.jpg" alt="instructions-image-3" class="large-image">
+        <p class="hover-prompt over-text">Hover to expand</p>
+      </div>
+
+      <p>Select <b>Review and Launch</b>. Click <b>Launch</b>.</p>
+
+      <p>Create new key pair, name the key something memorable, click <b>download</b>. This will create a .pem file. Remember where you put it! We will use it later.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/key_pair.jpg" alt="instructions-image-4" class="large-image">
+        <p class="hover-prompt  over-text">Hover to expand</p>
+      </div>
+
+      <p>Click <b>Launch</b>, then <b>View instances</b> on the bottom right.</p>
+
+      <p>Click the checkbox next to your new server. In the window below under <b>Public IPv4 address</b> click the copy image. You can keep this page open just in case you lose your IP that is copied. We will need this later on in this guide</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/IPv4_address.jpg" alt="instructions-image-5" class="large-image">
+        <p class="hover-prompt">Hover to expand</p>
+      </div>
+
+      <p>Next we will modify security settings to allow your server to be accessed.</p>
+
+      <p>On the left hand panel navigate to <b>Security Groups.</b></p>
+      <p>Click on the Security Group ID of the new server. Most likely it will be named <b>launch-wizard-1</b>.</p>
+      <p>On the top right click <b>Actions</b> and select <b> Edit inbound rules</b>.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/actions.jpg" alt="instructions-image-6" class="small-image">
+      </div>
+      <p> Click <b>Add rule</b> then change custom TCP to <b>HTTP</b>. In the search bar to the right, select <b>0.0.0.0/0</b>, click Save rules and we can move on!</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/inbound_rules.jpg" alt="instructions-image-7" id="inbound-image">
+        <p class="hover-prompt">Hover to expand</p>
+      </div>
+
+      <p>Success! You have gotten your server up and running! You can access it by inputting the IP address into your browser. At the moment nothing will show up until we install Apache2 onto the server. For this we will use <b>PuTTy</b>.</p>
+    </div>
+    <!-- /////////////Section 2. PuTTy///////////// -->
+    <div class="putty">
+      <h2>Prep PuTTy</h2>
+
+      <p>Install <a href="https://www.putty.org/">PuTTy</a>. You want the first link at the top of the page.</p>
+
+      <p>Puttygen should have been installed as part of the PuTTy package. Find and run the application.</p>
+
+      <p>Click Load</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/putty_load.jpg" alt="instructions-image-8" class="large-image">
+        <p class="hover-prompt">hover to expand</p>
+      </div>
+
+      <p>Find your <b>.pem</b> file. You will most likely have to change .ppk files to all files.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/ppk_all.jpg" alt="instructions-image-9" class="small-image">
+      </div>
+
+      <p>Click <b>Save private key</b>.</p>
+
+      <p>For simplicity name it the same as the <b>.pem</b> file. You can now close PuTTygen.</p>
+
+      <p class="section-header">Next we will run the PuTTy application.</p>
+
+      <p>On the left, click the plus next to <b>SSH</b>, then click on <b>Auth</b>. Click Browse and find the new .ppk file you created with PuTTygen.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/ssh_auth.jpg" alt="instructions-image-10" class="large-image">
+        <p class="hover-prompt">Hover to expand</p>
+      </div>
+
+      <p>Now click on session at the top and to the left. Under host name place your IP address for the server you created. Hopefully it is still copied! Click Open and you will get a PuTTy security alert. Select <b>Accept</b>.</p>
+
+      <p>Since we made the server using ubuntu, your user name is 'ubuntu'
+      a list to user names based on operating system is provided below if you want to use this guide again for another AMI.</p>
+
+      <ul>
+        <li>For Amazon Linux 2 or the Amazon Linux AMI, the user name is ec2-user.</li>
+        <li>For a CentOS AMI, the user name is centos or ec2-user.</li>
+        <li>For a Debian AMI, the user name is admin.</li>
+        <li>For a Fedora AMI, the user name is fedora or ec2-user.</li>
+        <li>For a RHEL AMI, the user name is ec2-user or root.</li>
+        <li>For a SUSE AMI, the user name is ec2-user or root.</li>
+        <li>For an Ubuntu AMI, the user name is ubuntu.</li>
+        <li>For an Oracle AMI, the user name is ec2-user.</li>
+        <li>For a Bitnami AMI, the user name is bitnami.</li>
+      </ul>
+
+      <p class="section-header">Next we will install apache2</p>
+    </div>
+    <!-- /////////////Section 3. Installing Apache2///////////// -->
+    <div class="apache2">
+      <h2>Install Apache2</h2>
+      <p>Start with 'sudo apt update'</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/apt_update.jpg" alt="instructions-image-11" class="small-image">
+      </div>
+
+      <p>Next run 'sudo apt install apache2' and enter 'Y' when asked to continue.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/install_apache.jpg" alt="instructions-image-12" class="small-image">
+      </div>
+
+      <p>From here we will restart and check the status of your apache2 server. Enter the following commands.</p>
+
+      <p>'sudo systemctl restart apache2'</p>
+
+      <p>'sudo systemctl status apache2'</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/systemctl.jpg" alt="instructions-image-13" class="small-image">
+      </div>
+
+      <p>You should see that your new server is active and running. To exit this dialog input <b>ctrl+C</b>.</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/status.jpg" alt="instructions-image-14" class="wide-image">
+      </div>
+
+      <p>Next we will navigate to your webroot folder and clone your github repo in to the folder.</p>
+
+      <p>Type 'cd /var/www/html'</p>
+
+      <p>type 'sudo git clone &#60github url&#62'</p>
+      <br>
+      <div class="image-container">
+        <img src="./assets/images/git_clone.jpg" alt="instructions-image-15" class="wide-image">
+      </div>
+
+      <p>If you navigate to your ip address that was assigned earlier and add <b>/the name of your projects folder</b> you will be taken to the page.</p>
+      <!-- probably an image -->
+    </div>
+
+    <p id="congrats"></p>
+    <p id="congrats-invisible">Congratulations! You have successfully set up your own public server through AWS.</p>
+
+  </main>
+</div>
+  <footer>
+
+  </footer>
+</body>
+
+</html>
